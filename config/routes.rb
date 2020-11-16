@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   resources :bookings, only: [:index, :update, :destroy]
 
   # you will see the result of your search for a particular equipment
-  get '/search_results', to: 'search_results#index'
+  resources :search_results, only: :index
+  
+  get '/profile', to: 'users#show'
 end
