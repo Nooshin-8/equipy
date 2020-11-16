@@ -1,24 +1,24 @@
 class EquipmentController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: %i[index show]
+
   def index
     @equipment = Equipment.all
   end
 
   def show
-    @equipement = Equipment.find(params[:id])
+    @equipment = Equipment.find(params[:id])
   end
 
   def new
-    @equipment = Equipment.new()
+    @equipment = Equipment.new
   end
 
   def create
     @equipment = Equipment.new(equipment_params)
-    @equipment.user_id = current_user
-    if equipment.save
-      # redirect_to equipment_path(@equipment)
-      # redirecting to root to avoid not having a show page right now
-      redirect_to '/'
+    @equipment.user = current_user
+
+    if @equipment.save
+      redirect_to equipment_path(@equipment)
     else
       render "new"
     end
