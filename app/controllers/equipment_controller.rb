@@ -1,5 +1,12 @@
 class EquipmentController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
+  def index
+    @equipment = Equipment.all
+  end
+
+  def show
+    @equipement = Equipment.find(params[:id])
+  end
 
   def new
     @equipment = Equipment.new()
