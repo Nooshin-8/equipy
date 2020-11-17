@@ -1,6 +1,6 @@
 class EquipmentController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :set_equipment, only: [:edit, :update, :destroy]
+  # skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :set_equipment, only: %i[edit update destroy]
 
   def index
     @equipment = Equipment.all
@@ -32,7 +32,6 @@ class EquipmentController < ApplicationController
   def update
     @equipment.update(equipment_params)
     redirect_to equipment_path(@equipment)
-    @equipment.save
   end
 
   def destroy
@@ -47,6 +46,6 @@ class EquipmentController < ApplicationController
   end
 
   def equipment_params
-    params.require(:equipment).permit(:title, :price, :description, :category, :location)
+    params.require(:equipment).permit(:title, :price, :description, :category, :location, photos: [])
   end
 end
