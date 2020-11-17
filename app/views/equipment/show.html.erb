@@ -7,6 +7,9 @@
         <div class="p-2 bd-highlight"><h1 class><%= @equipment.category %></h1></div>
         <div class="p-2 bd-highlight"><h1 class><%= @equipment.price %></h1></div>
       </div>
+      <%= link_to 'Back',  equipment_index_path %>
+      <%= link_to 'Edit',  edit_equipment_path(@equipment) %>
+      <%= link_to 'Delete',  equipment_path(@equipment), method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %>
     </div>
   </div>
 
