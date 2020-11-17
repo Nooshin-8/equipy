@@ -1,6 +1,12 @@
 <div class="container">
+  <% @equipment.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, class: "w-50" %>
+  <% end %>
+
   <div class="row">
     <div class="col">
+      
+
       <div class="d-flex flex-row bd-highlight mb-3">
         <div class="p-2 bd-highlight"><h1 class><%= @equipment.title %></h1></div>
         <div class="p-2 bd-highlight"><h1 class><%= @equipment.description %></h1></div>
