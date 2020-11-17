@@ -9,15 +9,20 @@ class EquipmentController < ApplicationController
   def show
     @equipment = Equipment.find(params[:id])
     @booking = Booking.new
+
+    authorize @equipment
   end
 
   def new
     @equipment = Equipment.new
+    authorize @equipment
   end
 
   def create
     @equipment = Equipment.new(equipment_params)
     @equipment.user = current_user
+
+    authorize @equipment
 
     if @equipment.save
       redirect_to equipment_path(@equipment)
@@ -44,6 +49,7 @@ class EquipmentController < ApplicationController
 
   def set_equipment
     @equipment = Equipment.find(params[:id])
+    authorize @equipment
   end
 
   def equipment_params
