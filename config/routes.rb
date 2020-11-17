@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
   # you will see the result of your search for a particular equipment
   resources :search_results, only: :index
-  
-  get '/profile', to: 'users#show'
+
+  get '/profile', to: 'profiles#show'
 end
