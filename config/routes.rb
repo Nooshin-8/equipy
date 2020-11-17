@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   resources :search_results, only: :index
 
   get '/profile', to: 'profiles#show'
-  get '/profile/edit', to: 'profiles#edit'
+  get '/profile/edit', to: 'profiles#edit', as: "user"
 end

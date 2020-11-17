@@ -13,11 +13,15 @@ class UserPolicy < ApplicationPolicy
     return true
   end
 
+  def edit?
+    return true
+  end
+
   def update?
-    user == record.user
+    user == record
   end
 
   def destroy?
-    user == record.user
+    user == record
   end
 end
