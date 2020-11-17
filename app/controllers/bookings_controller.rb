@@ -1,5 +1,15 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:des troy]
+before_action :set_booking, only: [:destroy]
+  
+  def create
+    @booking = Booking.new(booking_params)
+    @booking.user = current_user
+    @booking.equipment = Equipment.find(params[:equipment_id])
+    @booking.accepted = "pending"
+
+    @booking.save
+    redirect_to profile_path
+  end
   
   def destroy
     @booking.destroy
@@ -8,6 +18,10 @@ class BookingsController < ApplicationController
   end
 
   private
+
+  def booking_params
+    params.require(:booking).permit(:start_date, :end_date)
+  end
 
   def set_booking
     @booking = Booking.find(params[:id])
