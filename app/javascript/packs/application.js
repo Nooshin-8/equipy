@@ -26,39 +26,10 @@ import "bootstrap";
 require("mapbox-gl");
 
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
+import { initMapbox } from '../plugins/init_mapbox';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  initMapbox();
 });
-
-if (document.getElementById('map') !== null ) {
-  document.addEventListener('turbolinks:load', () => {    
-    callMapAPI(address);
-  });
-}
-
-const mapApi = (xAxis, yAxis) => {
-  const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9',
-    center: [xAxis, yAxis],
-    zoom: 15
-  });
-  new mapboxgl.Marker()
-  .setLngLat([xAxis, yAxis])
-  .addTo(map);
-};
-
-const callMapAPI = (address) => {
-  const mapBoxAccessToken = "pk.eyJ1IjoicHhjcm9uaW4iLCJhIjoiY2tnd2d0dThpMDJqbTJ6cmdra2Rqbmw4byJ9.UzNokaYnFf1IM89qnyFNxQ";
-  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${mapBoxAccessToken}`;
-  fetch(url)
-    .then(response => response.json())
-    .then((data) => {
-      const xAxis = data.features[0].center[0];
-      const yAxis = data.features[0].center[1];
-      mapApi(xAxis, yAxis);
-    });
-};

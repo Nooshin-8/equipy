@@ -26,13 +26,8 @@
           #map { top: 0; bottom: 0; width: 100%; }
         </style>
       </div>
-      <div id="map" style="height: 320px; width: 640px">></div>
+      <div id="map" style="height: 320px; width: 640px" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="pk.eyJ1IjoicHhjcm9uaW4iLCJhIjoiY2tnd2d0dThpMDJqbTJ6cmdra2Rqbmw4byJ9.UzNokaYnFf1IM89qnyFNxQ"></div>
   </div>
 
   <%= render '/bookings/form' %>
 </div>
-
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoicHhjcm9uaW4iLCJhIjoiY2tnd2d0dThpMDJqbTJ6cmdra2Rqbmw4byJ9.UzNokaYnFf1IM89qnyFNxQ';
-var address = '<%= @equipment.location %>';
-</script>
