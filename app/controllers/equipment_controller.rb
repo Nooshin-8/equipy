@@ -3,7 +3,8 @@ class EquipmentController < ApplicationController
   before_action :set_equipment, only: [:edit, :update, :destroy]
 
   def index
-    @equipment = Equipment.all
+    # @equipment = Equipment.all
+    @equipment = policy_scope(Equipment)
   end
 
   def show

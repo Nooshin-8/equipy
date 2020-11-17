@@ -6,12 +6,12 @@ class EquipmentPolicy < ApplicationPolicy
       # user is the current_user
 
       scope.all
+      # scope.where(user: user) # you cannot see all equipments but only
+      # the ones you created, if you want to see all use scope.all
     end
   end
 
-  # def new?
-    # return true
-  # end
+  # no need for new? (calls create) and edit? because edit calls update
 
   def show?
     return true
@@ -22,11 +22,10 @@ class EquipmentPolicy < ApplicationPolicy
   end
 
   def update?
-    return user == record.user
+    user == record.user
   end
 
   def destroy?
-    return user == record.user
+    user == record.user
   end
-
 end

@@ -1,16 +1,19 @@
 class BookingsController < ApplicationController
 before_action :set_booking, only: [:destroy]
-  
+
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
+
+    authorize @equipment
+
     @booking.equipment = Equipment.find(params[:equipment_id])
     @booking.accepted = "pending"
 
     @booking.save
     redirect_to profile_path
   end
-  
+
   def destroy
     @booking.destroy
     # I think we'll want this to redirect to the profile page in the future. Just a placeholder for now.
@@ -21,6 +24,7 @@ before_action :set_booking, only: [:destroy]
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date)
+    authorize @equipment
   end
 
   def set_booking
