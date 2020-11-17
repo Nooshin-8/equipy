@@ -1,12 +1,12 @@
 class BookingsController < ApplicationController
 
-before_action :set_booking, only: [:destroy, :update]
+  before_action :set_booking, only: %i[destroy update]
 
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
 
-    authorize @equipment
+    authorize @booking
 
     @booking.equipment = Equipment.find(params[:equipment_id])
     @booking.accepted = "pending"
@@ -14,7 +14,6 @@ before_action :set_booking, only: [:destroy, :update]
     @booking.save
     redirect_to profile_path
   end
-
 
   def update
     @booking.status = "pending"
@@ -32,10 +31,10 @@ before_action :set_booking, only: [:destroy, :update]
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date)
-    authorize @equipment
   end
 
   def set_booking
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 end
