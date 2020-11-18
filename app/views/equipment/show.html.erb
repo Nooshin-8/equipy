@@ -25,17 +25,11 @@
           <%= render '/bookings/form' %>
       </div>
     </div>
-
-      <div class="container">
-        <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
-        <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
-        <style>
-          body { margin: 0; padding: 0; }
-          #map { top: 0; bottom: 0; width: 100%; }
-        </style>
-      </div>
-      <div id="map" style="height: 320px; width: 640px" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="pk.eyJ1IjoicHhjcm9uaW4iLCJhIjoiY2tnd2d0dThpMDJqbTJ6cmdra2Rqbmw4byJ9.UzNokaYnFf1IM89qnyFNxQ">
-      </div>
+      <div id="map"
+        style="width: 100%; height: 600px;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+     </div>
 
   </div>
 

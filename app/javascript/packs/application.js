@@ -23,7 +23,6 @@ require("channels")
 
 // External imports
 import "bootstrap";
-require("mapbox-gl");
 
 // Internal imports, e.g:
 import { initMapbox } from '../plugins/init_mapbox';
