@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="row pr-4 pl-4 pt-4 pb-4">
+<div class="container p-4">
+  <div class="row no-gutters">
     <div class="card-category col-sm m-1" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://catalystshop.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/h/chum_9.jpg)">
       Surfboards
     </div>
@@ -7,7 +7,7 @@
       Skis/Snowboards
     </div>
   </div>
-  <div class="row pr-4 pl-4 pt-4 pb-4">
+  <div class="row no-gutters">
     <div class="card-category col-sm m-1" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.moving-minds.com/cmsstatic/img/976/G-72046-RainbowUltraPlayRecessReady-PACK-1-clean.jpg)">
       Sports Balls
     </div>
@@ -16,19 +16,30 @@
     </div>
   </div>
 </div>
-<div class="container">  
-  <div class="row pr-4 pl-4 pt-4 pb-4">
+<div class="container p-4">
+  <h2>Recently added</h2>
+  <div class="row no-gutters">
       <% @equipment.each do |equipment| %>
-
-    <div class="col-12 col-md-4 mb-3">
-      <div class="card">
-        <h2>Image Tag Goes here</h2>
-          <div class="card-body">
-            <h5 class="card-title"><%= equipment.title%></h5>
-            <%= link_to "See equipment", equipment_path(equipment), class:"btn btn-primary" %>
+        <div class="card">
+          <div class="row">
+            <div class="col col-12 col-md-4">
+            <%= link_to equipment_path(equipment) do %>
+              <% if equipment.photos.attached? %>
+                <%= cl_image_tag equipment.photos.first.key, crop: :fill, class: 'w-100', alt: "Photo de l'équipement" %>
+              <% else %>
+                <%= image_tag "default_equipment_photo.jpg", alt: "Photo de l'équipement", class: "w-100" %>
+              <% end %>
+            <% end %>
+            </div>
+            <div class="col col-12 col-md-8">
+              <div class="card-body">
+                <%= link_to equipment.title, equipment_path(equipment), class: 'card-title h5' %>
+                <p class="card-subtitle mb-3 text-muted"><%= equipment.category %></p>
+                <p class="card-text"><%= equipment.description %>.</p>
+              </div>
+            </div>
           </div>
         </div>
-    </div>
-        <% end %>
+      <% end %>
   </div>
 </div>
