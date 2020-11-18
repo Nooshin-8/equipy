@@ -5,11 +5,21 @@ class EquipmentController < ApplicationController
   def index
     # @equipment = Equipment.all
     @equipment = policy_scope(Equipment).order(created_at: :desc)
+
+    @markers = @equipment.geocoded.map do |equipment|
+      {
+        lat: equipment.latitude,
+        lng: equipment.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { equipment: equipment })
+      }
+    end
   end
 
   def show
     @equipment = Equipment.find(params[:id])
     @booking = Booking.new
+
+    @markers = [ {lat: @equipment.latitude, lng: @equipment.longitude} ]
 
     authorize @equipment
   end
