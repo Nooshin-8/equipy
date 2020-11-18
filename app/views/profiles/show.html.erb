@@ -16,8 +16,11 @@
 
   <section class="mb-5">
     <h2 class="mb-3">Bookings waiting for approval</h2>
+      <% if @my_equipment_bookings.empty? %>  
+        <p>No booking requests</p>
+        <p><%= link_to  "Sell equipment", new_equipment_path %></p>
+      <% else %>
     <div class="row">
-      <% if @my_equipment_bookings %>
         <% @my_equipment_bookings.each do |booking| %>
           <div class="col-12 col col-md-6 col-lg-4">
             <div class="card mb-3">
@@ -48,11 +51,8 @@
             </div>
           </div>
         <% end %>
-      <% else %>
-      <p>No booking requests</p>
-      <%= link_to  "Sell equipment", new_equipment_path %>
-    <% end %>
     </div>
+    <% end %>
   </section>
 
   <section class="mb-5">
