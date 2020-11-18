@@ -4,7 +4,7 @@ class EquipmentController < ApplicationController
 
   def index
     # @equipment = Equipment.all
-    @equipment = policy_scope(Equipment)
+    @equipment = policy_scope(Equipment).order(created_at: :desc)
   end
 
   def show
