@@ -5,7 +5,7 @@
      <% if current_user.profile_picture.attached? %>
         <%= cl_image_tag current_user.profile_picture.key, height: 200, width: 200, crop: :fill %>
         <% else %>
-        <%= image_tag "useravatar", height: 200, width: 200 %>
+        <%= image_tag "useravatar.jpg", height: 200, width: 200 %>
         <% end %>
   </div>
   <div class="col-12 col-md-9">
@@ -16,7 +16,7 @@
 
   <section class="mb-5">
     <h2 class="mb-3">Bookings waiting for approval</h2>
-      <% if @my_equipment_bookings.nil? %>  
+      <% if @my_equipment_bookings.nil? %>
         <p>No booking requests</p>
       <% else %>
         <div class="row">
@@ -56,7 +56,7 @@
 
   <section class="mb-5">
     <h2 class="mb-3">Equipment booked</h2>
-    <% if @my_equipment_bookings.nil? %>  
+    <% if @my_equipment_bookings.nil? %>
       <p>You have no equipment.</p>
       <p><%= link_to  "Add equipment", new_equipment_path %></p>
     <% else %>
