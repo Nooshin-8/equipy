@@ -20,27 +20,11 @@
   <h2>Recently added</h2>
   <div class="row no-gutters">
       <% @equipment.each do |equipment| %>
-        <div class="card">
-          <div class="row">
-            <div class="col col-12 col-md-4">
-            <%= link_to equipment_path(equipment) do %>
-              <% if equipment.photos.attached? %>
-                <%= cl_image_tag equipment.photos.first.key, crop: :fill, class: 'w-100', alt: "Photo de l'équipement" %>
-              <% else %>
-                <%= image_tag "default_equipment_photo.jpg", alt: "Photo de l'équipement", class: "w-100" %>
-              <% end %>
-            <% end %>
-            </div>
-            <div class="col col-12 col-md-8">
-              <div class="card-body">
-                <%= link_to equipment.title, equipment_path(equipment), class: 'card-title h5' %>
-                <p class="card-subtitle mb-3 text-muted"><%= equipment.category %></p>
-                <p class="card-text"><%= equipment.description %>.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+         <%# render (partial: "card_equipment" locals: {equipment: equipment}) %>
+         <%= render "card_equipment", equipment: equipment %>
       <% end %>
+  </div>
+
       <div id="map"
         style="width: 100%; height: 600px;"
         data-markers="<%= @markers.to_json %>"
