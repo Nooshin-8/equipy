@@ -34,7 +34,6 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'cloudinary', '~> 1.16.0'
-gem 'mapbox-gl-rails'
 gem 'geocoder'
 
 group :development, :test do
