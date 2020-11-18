@@ -6,10 +6,11 @@ class ProfilesController < ApplicationController
     @my_bookings = Booking.where(user: current_user)
 
     # Bookings people made on current user's equipment
-    all_equipment = Equipment.where(user: current_user)
-    @my_equipment_booked = all_equipment.map do |equipment|
-      Booking.where(equipment_id: equipment.id)
+    my_equipment = Equipment.where(user: current_user)
+    @my_equipment_bookings = my_equipment.map do |equipment|
+      Booking.where(equipment_id: equipment.id).where(accepted: "pending")
     end
+    @my_equipment_bookings = @my_equipment_bookings[0]
   end
 
   def edit

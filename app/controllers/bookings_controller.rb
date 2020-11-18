@@ -16,9 +16,11 @@ class BookingsController < ApplicationController
   end
 
   def update
-    @booking.status = "pending"
-    @booking.save!
-    redirect_to booking_path(@booking)
+    booking = Booking.find(params[:id])
+    authorize @booking
+    booking.accepted = params[:booking][:accepted]
+    booking.save
+    redirect_to profile_path
   end
 
   def destroy

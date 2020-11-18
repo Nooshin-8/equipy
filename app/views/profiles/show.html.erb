@@ -1,4 +1,35 @@
-<h1>Your profile</h1>
-<h2>Booking requests</h2>
-
+<div class="container">
+  <h1>Your profile</h1>
+  <h2>Booking requests</h2>
+  <% if @my_equipment_bookings %>
+    <% @my_equipment_bookings.each do |booking| %>
+      <div class="card mb-3">
+        <div class="row">
+          <div class="col col-12 col-md-4">
+          <%= link_to equipment_path(booking.equipment) do %>
+            <% if booking.equipment.photos.attached? %>
+              <%= cl_image_tag booking.equipment.photos.first.key, crop: :fill, class: 'w-100', alt: "Photo de l'équipement" %>
+            <% else %>
+              <%= image_tag "default_equipment_photo.jpg", alt: "Photo de l'équipement", class: "w-100" %>
+            <% end %>
+          <% end %>
+          </div>
+          <div class="col col-12 col-md-8">
+            <div class="card-body">
+              <%= link_to booking.equipment.title, equipment_path(booking.equipment), class: 'card-title h5' %>
+              <p class="card-subtitle mb-3 text-muted"><%= booking.equipment.category %></p>
+              <p class="card-text"><%= booking.equipment.description %>.</p>
+              <p>Current status: <%= booking.accepted %></p>
+              <%= link_to "Accept booking", [booking, { booking: { accepted: 'accepted' }}], method: 'patch' %>
+              <%= link_to "Refuse booking", [booking, { booking: { accepted: 'refused' }}], method: 'patch' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No booking requests</p>
+    <%= link_to  "Sell equipment", new_equipment_path %>
+  <% end %>
+</div>
 
