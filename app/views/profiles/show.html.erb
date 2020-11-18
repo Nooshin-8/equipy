@@ -16,50 +16,47 @@
 
   <section class="mb-5">
     <h2 class="mb-3">Bookings waiting for approval</h2>
-      <% if @my_equipment_bookings.nil? %>  
+      <% if @my_equipment_bookings.empty? %>  
         <p>No booking requests</p>
+        <p><%= link_to  "Sell equipment", new_equipment_path %></p>
       <% else %>
-        <div class="row">
-          <% @my_equipment_bookings.each do |booking| %>
-            <div class="col-12 col col-md-6 col-lg-4">
-              <div class="card mb-3">
-                  <%= link_to equipment_path(booking.equipment) do %>
-                    <% if booking.equipment.photos.attached? %>
-                      <%= cl_image_tag booking.equipment.photos.first.key, crop: :fill, class: 'w-100', alt: "Photo de l'équipement" %>
-                    <% else %>
-                      <%= image_tag "default_equipment_photo.jpg", alt: "Photo de l'équipement", class: "w-100" %>
-                    <% end %>
+    <div class="row">
+        <% @my_equipment_bookings.each do |booking| %>
+          <div class="col-12 col col-md-6 col-lg-4">
+            <div class="card mb-3">
+                <%= link_to equipment_path(booking.equipment) do %>
+                  <% if booking.equipment.photos.attached? %>
+                    <%= cl_image_tag booking.equipment.photos.first.key, crop: :fill, class: 'w-100', alt: "Photo de l'équipement" %>
+                  <% else %>
+                    <%= image_tag "default_equipment_photo.jpg", alt: "Photo de l'équipement", class: "w-100" %>
                   <% end %>
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col col-12 col-lg-8">
-                        <%= link_to booking.equipment.title, equipment_path(booking.equipment), class: 'card-title h5' %>
-                        <p class="card-subtitle mb-3 text-muted"><%= booking.equipment.category %></p>
-                      </div>
+                <% end %>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col col-12 col-lg-8">
+                      <%= link_to booking.equipment.title, equipment_path(booking.equipment), class: 'card-title h5' %>
+                      <p class="card-subtitle mb-3 text-muted"><%= booking.equipment.category %></p>
+                    </div>
 
-                      <div class="col col-12 col-lg-4">
-                        <%= link_to [booking, { booking: { accepted: 'accepted' }}], method: 'patch' do %>
-                          <p class="text-success mb-1"><i class="fas fa-check"></i> Accept</p>
-                        <% end %>
-                        <%= link_to [booking, { booking: { accepted: 'refused' }}], method: 'patch' do %>
-                          <p class="text-danger m-0"><i class="fas fa-ban"></i> Refuse</p>
-                        <% end %>
-                      </div>
+                    <div class="col col-12 col-lg-4">
+                      <%= link_to [booking, { booking: { accepted: 'accepted' }}], method: 'patch' do %>
+                        <p class="text-success mb-1"><i class="fas fa-check"></i> Accept</p>
+                      <% end %>
+                      <%= link_to [booking, { booking: { accepted: 'refused' }}], method: 'patch' do %>
+                        <p class="text-danger m-0"><i class="fas fa-ban"></i> Refuse</p>
+                      <% end %>
                     </div>
                   </div>
-              </div>
+                </div>
             </div>
-          <% end %>
-      </div>
+          </div>
+        <% end %>
+    </div>
     <% end %>
   </section>
 
   <section class="mb-5">
     <h2 class="mb-3">Equipment booked</h2>
-    <% if @my_equipment_bookings.nil? %>  
-      <p>You have no equipment.</p>
-      <p><%= link_to  "Add equipment", new_equipment_path %></p>
-    <% else %>
     <div class="row">
       <% @my_bookings.each do |booking| %>
         <div class="col-12 col col-md-6 col-lg-4">
@@ -93,7 +90,6 @@
           </div>
         </div>
       <% end %>
-    <% end %>
     </div>
   </section>
 
