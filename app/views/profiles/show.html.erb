@@ -1,4 +1,86 @@
-<h1>This is the profile page</h1>
-<h3>It will display the user profile pic and info + an edit button for user info</h3>
-<h3>It will display equipment bookes</h3>
-<h3>It will display booking requests</h3>
+<div class="container">
+  <h1>Your profile</h1>
+  <section class="mb-5">
+    <p><%= current_user.email %></p>
+    <%= link_to  "Edit my profile", user_path %>
+  </section>
+
+  <section class="mb-5">
+    <h2 class="mb-3">Bookings waiting for approval</h2>
+    <div class="row">
+      <% if @my_equipment_bookings %>
+        <% @my_equipment_bookings.each do |booking| %>
+          <div class="col-12 col col-md-6 col-lg-4">
+            <div class="card mb-3">
+                <%= link_to equipment_path(booking.equipment) do %>
+                  <% if booking.equipment.photos.attached? %>
+                    <%= cl_image_tag booking.equipment.photos.first.key, crop: :fill, class: 'w-100', alt: "Photo de l'équipement" %>
+                  <% else %>
+                    <%= image_tag "default_equipment_photo.jpg", alt: "Photo de l'équipement", class: "w-100" %>
+                  <% end %>
+                <% end %>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col col-12 col-lg-8">
+                      <%= link_to booking.equipment.title, equipment_path(booking.equipment), class: 'card-title h5' %>
+                      <p class="card-subtitle mb-3 text-muted"><%= booking.equipment.category %></p>
+                    </div>
+                    
+                    <div class="col col-12 col-lg-4">
+                      <%= link_to [booking, { booking: { accepted: 'accepted' }}], method: 'patch' do %>
+                        <p class="text-success mb-1"><i class="fas fa-check"></i> Accept</p>
+                      <% end %>
+                      <%= link_to [booking, { booking: { accepted: 'refused' }}], method: 'patch' do %>
+                        <p class="text-danger m-0"><i class="fas fa-ban"></i> Refuse</p>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+      <p>No booking requests</p>
+      <%= link_to  "Sell equipment", new_equipment_path %>
+    <% end %>
+    </div>
+  </section>
+
+  <section class="mb-5">
+    <h2 class="mb-3">Equipment booked</h2>
+    <div class="row">
+      <% @my_bookings.each do |booking| %>
+        <div class="col-12 col col-md-6 col-lg-4">
+          <div class="card mb-3">
+              <%= link_to equipment_path(booking.equipment) do %>
+                <% if booking.equipment.photos.attached? %>
+                  <%= cl_image_tag booking.equipment.photos.first.key, crop: :fill, class: 'w-100', alt: "Photo de l'équipement" %>
+                <% else %>
+                  <%= image_tag "default_equipment_photo.jpg", alt: "Photo de l'équipement", class: "w-100" %>
+                <% end %>
+              <% end %>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col col-12 col-lg-7">
+                    <%= link_to booking.equipment.title, equipment_path(booking.equipment), class: 'card-title h5' %>
+                    <p class="card-subtitle mb-3 text-muted"><%= booking.equipment.category %></p>
+                  </div>
+                  
+                  <div class="col col-12 col-lg-5">
+                    <% case booking.accepted %>
+                      <% when "accepted" %>
+                        <p class="text-success"><i class="fas fa-check"></i> Accepted</p>
+                    <% when "refused" %>
+                      <p class="text-danger"><i class="fas fa-ban"></i> Rejected</p>
+                    <% else %>
+                      <p class="text-danger"><i class="far fa-hourglass"></i></i> Pending</p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
