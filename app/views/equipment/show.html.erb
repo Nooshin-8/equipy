@@ -49,13 +49,13 @@
 
   <div class="row mt-5">
     <div class="col-12 col-md-6">
-      <h4><u>Reviews</u> <%= link_to "Add a Review", new_equipment_review_path(@equipment) %></h4>
+      <h4><u>Reviews</u></h4>
       <% @equipment.reviews.each do |r| %>
         <h5><%= r.title %>
         <% r.rating.times do %>
           ⭐
         <% end %>        
-        <%= User.find(r.user_id).email %>
+        <%= User.find(r.user_id).username %>
         <% if current_user != nil %>
           <% if current_user.id == r.user_id %>
             <%= link_to edit_equipment_review_path(r.id) do %> 
@@ -64,12 +64,13 @@
             <%= link_to equipment_review_path(r.id), method: :delete, data: {confirm: "Are you sure?"} do %>
               <i class="far fa-trash-alt"></i>
             <% end %>
-            </h5>
-            <p><%= r.description %></p>
           <% end %>
         <% end %>
+        </h5>
+        <p><%= r.description %></p>
       <% end %>  
     </div>
+    
     <div class="booking-form col-12 col-md-6">
       <h4>Add a Review</h4>
       <%= render '/reviews/form' %>

@@ -25,7 +25,8 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to equipment_path(@equipment)
     else
-      render "/reviews/new"
+      @booking = Booking.new
+      render "/equipment/show"
     end
   end
 
