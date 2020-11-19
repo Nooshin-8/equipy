@@ -8,5 +8,5 @@ class SearchResultsController < ApplicationController
      else
       @equipment = Equipment.all
      end
-    
- end
+  end
+end
