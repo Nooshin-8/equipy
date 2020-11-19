@@ -18,6 +18,7 @@ class EquipmentController < ApplicationController
   def show
     @equipment = Equipment.find(params[:id])
     @booking = Booking.new
+    @review = Review.new
 
     @markers = [ {lat: @equipment.latitude, lng: @equipment.longitude} ]
 
