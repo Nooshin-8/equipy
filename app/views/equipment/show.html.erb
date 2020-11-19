@@ -46,6 +46,7 @@
       <%= render '/bookings/form' %>
     </div>
   </div>
+
   <div class="row mt-5">
     <div class="col-12 col-md-6">
       <h4><u>Reviews</u> <%= link_to "Add a Review", new_equipment_review_path(@equipment) %></h4>
@@ -54,9 +55,24 @@
         <% r.rating.times do %>
           ⭐
         <% end %>        
-        <%= User.find(r.user_id).email %> <%= link_to "✏", edit_equipment_review_path(r.id) %> <%= link_to "♻", equipment_review_path(r.id), method: :delete, data: {confirm: "Are you sure?"} %></h5>
-        <p><%= r.description %></p>
-      <% end %>
+        <%= User.find(r.user_id).email %>
+        <% if current_user != nil %>
+          <% if current_user.id == r.user_id %>
+            <%= link_to edit_equipment_review_path(r.id) do %> 
+              <i class="far fa-edit"></i>
+            <% end %>
+            <%= link_to equipment_review_path(r.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+              <i class="far fa-trash-alt"></i>
+            <% end %>
+            </h5>
+            <p><%= r.description %></p>
+          <% end %>
+        <% end %>
+      <% end %>  
+    </div>
+    <div class="booking-form col-12 col-md-6">
+      <h4>Add a Review</h4>
+      <%= render '/reviews/form' %>
     </div>
   </div>
 

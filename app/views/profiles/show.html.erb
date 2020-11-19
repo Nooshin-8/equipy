@@ -9,6 +9,7 @@
     </div>
     <div class="col-12 col-md">
       <p class="mb-1"><%= current_user.email %></p>
+      <p class="mb-1"><%= current_user.username if current_user.username %></p>
       <%= link_to  "Edit", user_path %>
     </div>
     <div class="col col-12 col-md-auto">
