@@ -20,9 +20,9 @@
     </div>
     <div class="col col-12 col-md-auto">
       <div class="statistics__container">
-        <span class="statistics__icon"><i class="far fa-calendar-alt"></i></span>
-      	<p class="statistics__text"><%= @my_equipment_bookings.sum { |equipment_bookings| equipment_bookings.count } %></p>
-        <p class="statistics__label">Equipment booked</p>
+        <span class="statistics__icon"><i class="fas fa-bell"></i></span>
+      	<p class="statistics__text"><%= @pending_requests_count %></p>
+        <p class="statistics__label">Pending requests</p>
       </div>
     </div>
   </section>
@@ -36,9 +36,9 @@
           <div class="card mb-3">
               <%= link_to equipment_path(booking.equipment) do %>
                 <% if booking.equipment.photos.attached? %>
-                  <%= cl_image_tag booking.equipment.photos.first.key, crop: :fill, class: 'w-100', alt: "Photo de l'équipement" %>
+                  <%= cl_image_tag booking.equipment.photos.first.key, crop: :fill, class: 'w-100', alt: "Equipment photo" %>
                 <% else %>
-                  <%= image_tag "default_equipment_photo.jpg", alt: "Photo de l'équipement", class: "w-100" %>
+                  <%= image_tag "default_equipment_photo.jpg", alt: "Equipment photo", class: "w-100" %>
                 <% end %>
               <% end %>
               <div class="card-body">
@@ -66,49 +66,78 @@
     </div>
   </section>
 </div>
+
+<%# Your equipment %>
 <section class="pb-5 pt-5 container">
+      <h1 class="mb-3">Your equipment</h1>
 
-
-
-    <% if @my_equipment_bookings.empty? %>  
-      <p>No booking requests pending. <%= link_to  "Sell equipment", new_equipment_path %></p>
-    <% else %>
-    <h1 class="mb-3">Bookings waiting for approval</h1>
-      <div class="row">
-        <% @my_equipment_bookings.each do |equipment_bookings| %>
-          <% equipment_bookings.each do |booking| %>
-            <div class="col-12 col col-md-6 col-lg-4">
-              <div class="card mb-3">
-                  <%= link_to equipment_path(booking.equipment) do %>
-                    <% if booking.equipment.photos.attached? %>
-                      <%= cl_image_tag booking.equipment.photos.first.key, crop: :fill, class: 'w-100', alt: "Photo de l'équipement" %>
-                    <% else %>
-                      <%= image_tag "default_equipment_photo.jpg", alt: "Photo de l'équipement", class: "w-100" %>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending requests (<%= @pending_requests_count > 0 ? @pending_requests_count : 0 %>)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="false">All equipment (<%= @my_equipment.count > 0 ? @my_equipment.count : 0 %>)</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="tabContent">
+        <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+        
+        <%# Pending requests %>
+        <div class="row pt-3">
+          <% if @my_equipment_bookings.empty? %>  
+            <p>No booking requests pending. <%= link_to  "Sell equipment", new_equipment_path %></p>
+          <% else %>
+            <% @my_equipment_bookings.each do |equipment_bookings| %>
+              <% equipment_bookings.each do |booking| %>
+                <div class="col-12 col col-md-6 col-lg-4">
+                  <div class="card mb-3">
+                    <%= link_to equipment_path(booking.equipment) do %>
+                      <%= cl_image_tag booking.equipment.photos.first.key, crop: :fill, class: 'w-100', alt: "Equipment photo" %>
                     <% end %>
-                  <% end %>
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col col-12 col-lg-8">
-                        <%= link_to booking.equipment.title, equipment_path(booking.equipment), class: 'card-title h5' %>
-                        <p class="card-subtitle mb-3 text-muted"><%= booking.equipment.category %></p>
-                      </div>
+                    <div class="card-body">
+                      <%= link_to booking.equipment.title, equipment_path(booking.equipment), class: 'card-title h5' %>
+                      <p class="card-subtitle mb-3 text-muted"><%= booking.equipment.category %></p>
 
-                      <div class="col col-12 col-lg-4">
-                        <%= link_to [booking, { booking: { accepted: 'accepted' }}], method: 'patch' do %>
-                          <p class="text-success mb-1"><i class="fas fa-check"></i> Accept</p>
-                        <% end %>
-                        <%= link_to [booking, { booking: { accepted: 'refused' }}], method: 'patch' do %>
-                          <p class="text-danger m-0"><i class="fas fa-ban"></i> Refuse</p>
-                        <% end %>
+                      <div class="row justify-content-between">
+                        <div class="col-auto">
+                          <%= link_to [booking, { booking: { accepted: 'accepted' }}], method: 'patch' do %>
+                            <span class="text-success"><i class="fas fa-check"></i> Accept</span>
+                          <% end %>
+                        </div>
+                        <div class="col-auto">
+                          <%= link_to [booking, { booking: { accepted: 'refused' }}], method: 'patch' do %>
+                            <span class="text-danger"><i class="fas fa-ban"></i> Refuse</span>
+                          <% end %>
+                        </div>
                       </div>
                     </div>
                   </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        
+      </div>
+      <div class="tab-pane pt-3 fade" id="all" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="row">
+          <% @my_equipment.each do |equipment| %>
+            <div class="col-12 col col-md-6 col-lg-4">
+              <div class="card mb-3">
+                <%= link_to equipment_path(equipment) do %>
+                  <%= cl_image_tag equipment.photos.first.key, crop: :fill, class: 'w-100', alt: "Equipment photo" %>
+                <% end %>
+                <div class="card-body">
+                  <%= link_to equipment.title, equipment_path(equipment), class: 'card-title h5' %>
+                  <p class="card-subtitle mb-3 text-muted"><%= equipment.category %></p>
+                </div>
               </div>
             </div>
           <% end %>
-        <% end %>
+        </div>
+      
       </div>
-    <% end %>
+    </div>
 </section>
 
 

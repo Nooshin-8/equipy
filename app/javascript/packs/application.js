@@ -26,6 +26,7 @@ import "bootstrap";
 
 // Internal imports, e.g:
 import { initMapbox } from '../plugins/init_mapbox';
+import { initTab, initTabs } from '../plugins/init_tabs';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
