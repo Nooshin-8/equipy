@@ -6,6 +6,7 @@
     <div class="col-6">
     <%= simple_form_for @user do |f| %>
       <%= f.input :email %>
+      <%= f.input :username %>
       <%= f.input :profile_picture, as: :file %>
       <%= f.submit %>
     <% end %>

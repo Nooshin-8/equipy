@@ -30,3 +30,23 @@
 .card-product .card-product-infos {
   padding: 16px;
 }
+
+.card{
+  padding:20px;
+}
+
+.card-body .card-price {
+  position: absolute;
+  right: -5px;
+  top: -20px;
+  width:100px;
+  padding:8px;
+  text-align: center;
+  font-weight:600;
+  background:#066BE7;
+  color:white;
+}
+
+.card-body .card-price span{
+  font-weight:400;
+}
