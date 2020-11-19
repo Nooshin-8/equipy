@@ -5,15 +5,18 @@ class ProfilesController < ApplicationController
     # Bookings the current user made
     @my_bookings = Booking.where(user: current_user)
 
+    # Get all the user's equipment
+    @my_equipment = Equipment.where(user: current_user)
+    
     # Bookings people made on current user's equipment
-    ## Get all the user's equipment
-    my_equipment = Equipment.where(user: current_user)
-
-    ## For every equipment, get the pending bookings associated
-    @my_equipment_bookings = my_equipment.map do |equipment|
+    ## For each equipment, get the pending booking(s) associated
+    ## => Returns an array containing one entry per equipment.
+    @my_equipment_bookings = @my_equipment.map do |equipment|
       Booking.where(equipment: equipment).where(accepted: 'pending')
     end
-    ## Return the bookings without the equipment that did not have
+
+    ## Removes the empty entries coming from equipment without bookings.
+    ## => Returns an array of arrays [[booking1, booking2], [booking]]
     @my_equipment_bookings.reject!(&:empty?)
   end
 
