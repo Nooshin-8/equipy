@@ -30,6 +30,19 @@
       <%= render '/bookings/form' %>
     </div>
   </div>
+  <div class="row mt-5">
+    <div class="col-12 col-md-6">
+      <h4><u>Reviews</u> <%= link_to "Add a Review", new_equipment_review_path(@equipment) %></h4>
+      <% @equipment.reviews.each do |r| %>
+        <h5><%= r.title %>
+        <% r.rating.times do %>
+          ⭐
+        <% end %>        
+        <%= User.find(r.user_id).email %> <%= link_to "✏", edit_equipment_review_path(r.id) %> <%= link_to "♻", equipment_review_path(r.id), method: :delete, data: {confirm: "Are you sure?"} %></h5>
+        <p><%= r.description %></p>
+      <% end %>
+    </div>
+  </div>
 
 <!-- commented out the Show Map. Left the skeleton in case we want to reinstate it in the next two days
 
