@@ -1,4 +1,4 @@
-class EquipmentPolicy < ApplicationPolicy
+class ReviewPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
 
@@ -12,7 +12,7 @@ class EquipmentPolicy < ApplicationPolicy
   end
 
   # no need for new? (calls create) and edit? because edit calls update
-
+  
   def show?
     return true
   end
@@ -22,10 +22,10 @@ class EquipmentPolicy < ApplicationPolicy
   end
 
   def update?
-    return true
+    user.id == record.user_id
   end
 
   def destroy?
-    user == record.user
+    user.id == record.user_id
   end
 end

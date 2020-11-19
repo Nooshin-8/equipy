@@ -1,7 +1,12 @@
 class SearchResultsController < ApplicationController
   def index
-    query = params[:query].downcase
-    @results = policy_scope(Equipment)
-    @results = Equipment.where("lower(title) LIKE ? OR lower(description)LIKE ?", "%#{query}%", "%#{query}%")
+
+    @equipment = policy_scope(Equipment).order(created_at: :desc)
+
+     if params[:query].present?
+      @equipment = Equipment.main_search(params[:query]) # The method inside our model
+     else
+      @equipment = Equipment.all
+     end
   end
 end
