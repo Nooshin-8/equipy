@@ -6,11 +6,15 @@ class ProfilesController < ApplicationController
     @my_bookings = Booking.where(user: current_user)
 
     # Bookings people made on current user's equipment
+    ## Get all the user's equipment
     my_equipment = Equipment.where(user: current_user)
+
+    ## For every equipment, get the pending bookings associated
     @my_equipment_bookings = my_equipment.map do |equipment|
-      Booking.where(equipment_id: equipment.id).where(accepted: "pending")
+      Booking.where(equipment: equipment).where(accepted: 'pending')
     end
-    @my_equipment_bookings = @my_equipment_bookings[0]
+    ## Return the bookings without the equipment that did not have
+    @my_equipment_bookings.reject!(&:empty?)
   end
 
   def edit
