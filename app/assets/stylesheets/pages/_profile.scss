@@ -1,0 +1,28 @@
+.statistics {
+  &__container {
+  border: solid 2px rgba($primary, 0.4);
+  padding-left: 1rem;
+  width: 200px;
+  border-radius: 15px;
+  margin: 0.5rem;
+  position: relative;
+  }
+  &__icon {
+    margin: 0;
+    color: rgba($primary, 0.4);
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 2.8rem;
+  }
+  &__text {
+    font-weight: bold;
+    font-size: 3rem;
+    margin-bottom: 0;
+  }
+  &__label {
+    font-size: 0.8rem;
+    color: $secondary;
+    text-transform: uppercase;
+  }
+}
