@@ -1,20 +1,42 @@
 <div class="container p-4">
-  <div class="row no-gutters">
-    <div class="card-category col-sm m-1" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://catalystshop.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/h/chum_9.jpg)">
-      Surfboards
-    </div>
-    <div class="card-category col-sm m-1" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://cdn.shopify.com/s/files/1/0247/8797/6245/products/WagnerSkisSquare_2000x.jpg?v=1593536699)">
-      Skis/Snowboards
+  <div class="row mb-4">
+    <div class="col-12 col-md-6">
+    <%= link_to '/search_results?query=water sports' do %>
+      <div class="card-category col-sm m-1" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://catalystshop.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/h/chum_9.jpg)">
+        Water Sports
+      </div>
+    <% end %>
+  </div>
+
+    <div class="col-12 col-md-6">
+      <%= link_to '/search_results?query=winter sports' do %>
+        <div class="card-category col-sm m-1" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://cdn.shopify.com/s/files/1/0247/8797/6245/products/WagnerSkisSquare_2000x.jpg?v=1593536699)">
+          Winter Sports
+        </div>
+      <% end %>
     </div>
   </div>
-  <div class="row no-gutters">
-    <div class="card-category col-sm m-1" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.moving-minds.com/cmsstatic/img/976/G-72046-RainbowUltraPlayRecessReady-PACK-1-clean.jpg)">
-      Sports Balls
-    </div>
-    <div class="card-category col-sm m-1" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://seattlebackpackersmagazine.com/wp-content/uploads/2015/04/IMG_2218.jpg)">
-      Footwear
+
+
+  <div class="row">
+
+    <div class="col-12 col-md-6">
+      <%= link_to '/search_results?query=sports balls' do %>
+        <div class="card-category col-sm m-1" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.moving-minds.com/cmsstatic/img/976/G-72046-RainbowUltraPlayRecessReady-PACK-1-clean.jpg)">
+          Sports Balls
+         </div>
+      <% end %>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <%= link_to '/search_results?query=footwear' do %>
+      <div class="card-category col-sm m-1" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://seattlebackpackersmagazine.com/wp-content/uploads/2015/04/IMG_2218.jpg)">
+        Footwear
+       </div>
+     <% end %>
     </div>
   </div>
+
 </div>
 
     <div class="container mt-5 mb-3">
