@@ -30,7 +30,7 @@ class EquipmentController < ApplicationController
   end
 
   def create
-    @equipment = Equipment.new(equipment_params)
+    @review = Review.new(review_params)
     @equipment.user = current_user
 
     authorize @equipment
