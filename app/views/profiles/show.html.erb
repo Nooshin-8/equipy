@@ -10,12 +10,13 @@
   </div>
   <div class="col-12 col-md-9">
     <p>E-mail:<%= current_user.email %></p>
+    <p>Username:<%= current_user.username %></p>
     <%= link_to  "Edit my profile", user_path %>
   </div>
   </section>
 
   <section class="mb-5">
-      <% if @my_equipment_bookings.empty? %>  
+      <% if @my_equipment_bookings.empty? %>
         <p>No booking requests pending. <%= link_to  "Sell equipment", new_equipment_path %></p>
       <% else %>
       <h2 class="mb-3">Bookings waiting for approval</h2>
