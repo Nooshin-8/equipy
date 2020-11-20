@@ -51,10 +51,10 @@ def seed
         user: User.all.sample,
         title: ["Golf Clubs", "Gr8 Clbus!", "Big Drivers", "My Lucky Clubs", "Old Clubs", "New Clubs", "Neighbor's Clubs"].sample,
         description: "a",
-        category: 'Golfball',
+        category: 'Golf',
         price: [145, 165, 25, 33, 10, 50, 37, 22, 93, 101, 64, 22, 37].sample,
         location: ["5129 rue Saint-Denis, Montreal", "6290 rue Saint Denis, Montreal", "4825 rue Saint-Andre, Montreal", "1385 Jean Talon St E, Montreal, Quebec H2E 1S6, Canada", "7070 Henri Julien Ave, Montreal, Quebec H2S 3S3, Canada", "1450 Graham Blvd, Mount Royal, Quebec H3P 3N6, Canada", "3175 Chemin de la Côte-Sainte-Catherine, Montréal, QC H3T 1C5, Canada", "Montreal, QC H2S 1Z3, Canada"].sample)
-        equipment.description = ["These #{equipment.title.downcase} are one of the greatest possesions that I own. ANYONE would be lucky to rent and enjoy them. They are available to be rented on weekends (excluding the week between Christmas and New Years). Please contact me!", "I love my #{equipment.title.downcase} and so will you! They're perfect for all weather and seasons. You couldn't ask for a better items to rent.", "CONTACT ME IF YOU WOULD LIKE TO RENT MY EQUIPMENT. I AM NOT INTERESTED IN CASH, **SWAPS ONLY**. I AM ONLY LISTING THEM HERE FOR MORE EXPOSURE. AGAIN, I DO NOT WANT MONEY, ONLY SWAPS!!"].sample
+        equipment.description = ["These #{equipment.title.downcase} are one of the greatest possesions that I own. ANYONE would be lucky to rent and enjoy them. They are available to be rented on weekends (excluding the week between Christmas and New Years). Please contact me!", "I love my #{equipment.title.downcase} and so will you! They're perfect for all weather and seasons. You couldn't ask for better items to rent.", "CONTACT ME IF YOU WOULD LIKE TO RENT MY EQUIPMENT. I AM NOT INTERESTED IN CASH, **SWAPS ONLY**. I AM ONLY LISTING THEM HERE FOR MORE EXPOSURE. AGAIN, I DO NOT WANT MONEY, ONLY SWAPS!!"].sample
         equipment.photos.attach(io: File.open(golfball_photo), filename: 'picture.jpg')
         equipment.save!
     else
@@ -66,7 +66,7 @@ def seed
         category: 'Hiking & Camping',
         price: [145, 165, 25, 33, 10, 50, 37, 22, 93, 101, 64, 22, 37].sample,
         location: ["5129 rue Saint-Denis, Montreal", "6290 rue Saint Denis, Montreal", "4825 rue Saint-Andre, Montreal", "1385 Jean Talon St E, Montreal, Quebec H2E 1S6, Canada", "7070 Henri Julien Ave, Montreal, Quebec H2S 3S3, Canada", "1450 Graham Blvd, Mount Royal, Quebec H3P 3N6, Canada", "3175 Chemin de la Côte-Sainte-Catherine, Montréal, QC H3T 1C5, Canada", "Montreal, QC H2S 1Z3, Canada"].sample)
-        equipment.description = ["These #{equipment.title.downcase} are one of the greatest possesions that I own. ANYONE would be lucky to rent and enjoy them. They are available to be rented on weekends (excluding the week between Christmas and New Years). Please contact me!", "I love my #{equipment.title.downcase} and so will you! They're perfect for all weather and seasons. You couldn't ask for a better items to rent.", "CONTACT ME IF YOU WOULD LIKE TO RENT MY EQUIPMENT. I AM NOT INTERESTED IN CASH, **SWAPS ONLY**. I AM ONLY LISTING THEM HERE FOR MORE EXPOSURE. AGAIN, I DO NOT WANT MONEY, ONLY SWAPS!!"].sample
+        equipment.description = ["These #{equipment.title.downcase} are one of the greatest possesions that I own. ANYONE would be lucky to rent and enjoy them. They are available to be rented on weekends (excluding the week between Christmas and New Years). Please contact me!", "I love my #{equipment.title.downcase} and so will you! They're perfect for all weather and seasons. You couldn't ask for better items to rent.", "CONTACT ME IF YOU WOULD LIKE TO RENT MY EQUIPMENT. I AM NOT INTERESTED IN CASH, **SWAPS ONLY**. I AM ONLY LISTING THEM HERE FOR MORE EXPOSURE. AGAIN, I DO NOT WANT MONEY, ONLY SWAPS!!"].sample
         equipment.photos.attach(io: File.open(hiking_camping_photo), filename: 'picture.jpg')
         equipment.save!
     end
