@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_equipment, only: %i[index show new create]
-  before_action :set_review, only: %i[edit destroy]
+  before_action :set_equipment
+  before_action :set_review, only: %i[edit update destroy]
 
   def index
     @reviews = policy_scope(Review).order(created_at: :desc)
@@ -31,14 +31,10 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @equipment = Equipment.find(params[:id])
-    @review = Review.find(params[:equipment_id])
     authorize @review
   end
 
   def update
-    @equipment = Equipment.find(params[:equipment_id])
-    @review = Review.find(params[:id])
     authorize @review
     if @review.update(review_params)
       redirect_to equipment_path(@equipment)
@@ -48,8 +44,6 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @equipment = Equipment.find(params[:id])
-    @review = Review.find(params[:equipment_id])
     authorize @review
     @review.destroy
     redirect_to equipment_path(@equipment)
@@ -62,7 +56,7 @@ class ReviewsController < ApplicationController
   end
 
   def set_review
-    @review = Review.find(params[:equipment_id])
+    @review = Review.find(params[:id])
   end
 
   def review_params

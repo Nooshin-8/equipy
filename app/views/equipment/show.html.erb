@@ -58,10 +58,10 @@
         <%= User.find(r.user_id).username %>
         <% if current_user != nil %>
           <% if current_user.id == r.user_id %>
-            <%= link_to edit_equipment_review_path(r.id) do %> 
+            <%= link_to edit_equipment_review_path(@equipment, r) do %> 
               <i class="far fa-edit"></i>
             <% end %>
-            <%= link_to equipment_review_path(r.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+            <%= link_to equipment_review_path(@equipment, r), method: :delete, data: {confirm: "Are you sure?"} do %>
               <i class="far fa-trash-alt"></i>
             <% end %>
           <% end %>
