@@ -31,7 +31,7 @@ class EquipmentController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
+    @equipment = Equipment.new(equipment_params)
     @equipment.user = current_user
 
     authorize @equipment
