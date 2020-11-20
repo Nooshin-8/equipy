@@ -9,7 +9,7 @@
   </div>
 
   <div class="row">
-    <p><%= @equipment.location %></br>By:<%= @equipment.user.email %></p>
+    <p><%= @equipment.location %></br>By:<%= @equipment.user.username.empty? ? @equipment.user.email : @equipment.user.username %></p>
   </div>
   <div class="row">
     <p><strong>Category:</strong><%= @equipment.category %></p>
@@ -54,11 +54,11 @@
         <h5><%= r.title %>
         <% r.rating.times do %>
           ⭐
-        <% end %>        
+        <% end %>
         <%= User.find(r.user_id).username %>
         <% if current_user != nil %>
           <% if current_user.id == r.user_id %>
-            <%= link_to edit_equipment_review_path(@equipment, r) do %> 
+            <%= link_to edit_equipment_review_path(@equipment, r) do %>
               <i class="far fa-edit"></i>
             <% end %>
             <%= link_to equipment_review_path(@equipment, r), method: :delete, data: {confirm: "Are you sure?"} do %>
@@ -68,9 +68,9 @@
         <% end %>
         </h5>
         <p><%= r.description %></p>
-      <% end %>  
+      <% end %>
     </div>
-    
+
     <div class="booking-form col-12 col-md-6">
       <h4>Add a Review</h4>
       <%= render '/reviews/form' %>

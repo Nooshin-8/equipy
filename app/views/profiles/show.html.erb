@@ -8,8 +8,8 @@
         <% end %>
     </div>
     <div class="col-12 col-md">
-      <p class="mb-1"><%= current_user.email %></p>
-      <p class="mb-1"><%= current_user.username if current_user.username %></p>
+      <p class="mb-1"><strong>Your Email:</strong><%= current_user.email %></p>
+      <p class="mb-1"><strong>You username:</strong><%= current_user.username if current_user.username %></p>
       <%= link_to  "Edit", user_path %>
     </div>
     <div class="col col-12 col-md-auto">
@@ -82,10 +82,10 @@
       </ul>
       <div class="tab-content" id="tabContent">
         <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-        
+
         <%# Pending requests %>
         <div class="row pt-3">
-          <% if @my_equipment_bookings.empty? %>  
+          <% if @my_equipment_bookings.empty? %>
             <p>No booking requests pending. <%= link_to  "Sell equipment", new_equipment_path %></p>
           <% else %>
             <% @my_equipment_bookings.each do |equipment_bookings| %>
@@ -118,7 +118,7 @@
             <% end %>
           <% end %>
         </div>
-        
+
       </div>
       <div class="tab-pane pt-3 fade" id="all" role="tabpanel" aria-labelledby="profile-tab">
         <div class="row">
@@ -136,7 +136,7 @@
             </div>
           <% end %>
         </div>
-      
+
       </div>
     </div>
 </section>
