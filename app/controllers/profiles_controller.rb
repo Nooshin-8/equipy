@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
 
   def show
     # Bookings the current user made
-    @my_bookings = Booking.where(user: @user)
+    @user_bookings = Booking.where(user: @user)
   end
 
   def edit

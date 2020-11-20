@@ -6,9 +6,9 @@
     <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% if user_signed_in? && @pending_requests_count > 0 %>
+            <% if user_signed_in? && @user_pending_bookings_count > 0 %>
               <div class="notification__bubble">
-                <%= @pending_requests_count %>
+                <%= @user_pending_bookings_count %>
               </div>
             <% end %>
             <% if user_signed_in? && current_user.profile_picture.attached? %>

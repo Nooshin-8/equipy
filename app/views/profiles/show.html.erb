@@ -15,14 +15,14 @@
     <div class="col col-12 col-md-auto">
       <div class="statistics__container">
         <span class="statistics__icon"><i class="far fa-calendar-alt"></i></span>
-      	<p class="statistics__text"><%= @my_bookings.count %></p>
-        <p class="statistics__label">Booking<%= @my_bookings.count > 1 ? 's' : '' %> made</p>
+      	<p class="statistics__text"><%= @user_bookings.count %></p>
+        <p class="statistics__label">Booking<%= @user_bookings.count > 1 ? 's' : '' %> made</p>
       </div>
     </div>
     <div class="col col-12 col-md-auto">
       <div class="statistics__container">
         <span class="statistics__icon"><i class="fas fa-bell"></i></span>
-      	<p class="statistics__text"><%= @pending_requests_count %></p>
+      	<p class="statistics__text"><%= @user_pending_bookings_count %></p>
         <p class="statistics__label">Pending requests</p>
       </div>
     </div>
@@ -32,7 +32,7 @@
   <section class="pb-5 pt-5 container">
     <h1 class="mb-3">Your bookings</h1>
     <div class="row">
-      <% @my_bookings.each do |booking| %>
+      <% @user_bookings.each do |booking| %>
         <div class="col-12 col col-md-6 col-lg-4">
           <div class="card mb-3">
               <%= link_to equipment_path(booking.equipment) do %>
@@ -74,10 +74,10 @@
 
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending requests (<%= @pending_requests_count > 0 ? @pending_requests_count : 0 %>)</a>
+          <a class="nav-link active" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending requests (<%= @user_pending_bookings_count > 0 ? @user_pending_bookings_count : 0 %>)</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="false">All equipment (<%= @my_equipment.count > 0 ? @my_equipment.count : 0 %>)</a>
+          <a class="nav-link" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="false">All equipment (<%= @user_equipment.count > 0 ? @user_equipment.count : 0 %>)</a>
         </li>
       </ul>
       <div class="tab-content" id="tabContent">
@@ -85,10 +85,10 @@
 
         <%# Pending requests %>
         <div class="row pt-3">
-          <% if @my_equipment_bookings.empty? %>
+          <% if @user_pending_bookings.empty? %>
             <p>No booking requests pending. <%= link_to  "Sell equipment", new_equipment_path %></p>
           <% else %>
-            <% @my_equipment_bookings.each do |equipment_bookings| %>
+            <% @user_pending_bookings.each do |equipment_bookings| %>
               <% equipment_bookings.each do |booking| %>
                 <div class="col-12 col col-md-6 col-lg-4">
                   <div class="card mb-3">
@@ -122,7 +122,7 @@
       </div>
       <div class="tab-pane pt-3 fade" id="all" role="tabpanel" aria-labelledby="profile-tab">
         <div class="row">
-          <% @my_equipment.each do |equipment| %>
+          <% @user_equipment.each do |equipment| %>
             <div class="col-12 col col-md-6 col-lg-4">
               <div class="card mb-3">
                 <%= link_to equipment_path(equipment) do %>

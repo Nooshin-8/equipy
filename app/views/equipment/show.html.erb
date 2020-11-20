@@ -9,7 +9,7 @@
   </div>
 
   <div class="row">
-    <p><%= @equipment.location %></br>By:<%= @equipment.user.username.empty? ? @equipment.user.email : @equipment.user.username %></p>
+    <p><%= @equipment.location %></br>By:<%= @equipment.user.username.nil? ? @equipment.user.email : @equipment.user.username %></p>
   </div>
   <div class="row">
     <p><strong>Category:</strong><%= @equipment.category %></p>
