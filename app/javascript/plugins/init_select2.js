@@ -2,7 +2,12 @@
 import 'select2';
 
 const initSelect2 = () => {
-  $('#equipment_category').select2(); // (~ document.querySelectorAll)
+
+  setTimeout(() => {
+    $('#equipment_category').select2(); // (~ document.querySelectorAll)
+  }, 500)
 };
 
 export { initSelect2 };
+
+

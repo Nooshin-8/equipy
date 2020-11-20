@@ -6,6 +6,10 @@
   border-radius: 15px;
   margin: 0.5rem;
   position: relative;
+    &--warning {
+      @extend .statistics__container;
+      border-color: $warning;
+    }
   }
   &__icon {
     margin: 0;
@@ -14,6 +18,10 @@
     top: 5px;
     right: 15px;
     font-size: 2.8rem;
+    &--warning {
+      @extend .statistics__icon;
+      color: rgba($warning, 0.8);
+    }
   }
   &__text {
     font-weight: bold;

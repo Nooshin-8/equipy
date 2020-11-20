@@ -34,3 +34,5 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initSelect2();
 });
+
+import "controllers"

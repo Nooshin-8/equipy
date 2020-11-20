@@ -4,6 +4,19 @@ class ProfilesController < ApplicationController
   def show
     # Bookings the current user made
     @user_bookings = Booking.where(user: @user)
+
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {
+          user: {
+            pending_bookings: @user_pending_bookings,
+            pending_bookings_count: @user_pending_bookings_count,
+            equipment: @user_equipment
+          }
+        }
+      end
+    end
   end
 
   def edit

@@ -7,8 +7,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <% if user_signed_in? && @user_pending_bookings_count > 0 %>
-              <div class="notification__bubble">
-                <%= @user_pending_bookings_count %>
+              <div data-controller="counter" class="notification__bubble">
+                <span data-target="counter.count"><%= @user_pending_bookings_count %></span>
               </div>
             <% end %>
             <% if user_signed_in? && current_user.profile_picture.attached? %>
@@ -19,7 +19,7 @@
               <!-- <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle"> -->
           </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <ul>
+        <ul class="av-drop">
           <% if user_signed_in? %>
           <li><%= link_to 'Dashboard', profile_path %></li>
           <li><%= link_to 'Post to Equipy', new_equipment_path  %></li>
