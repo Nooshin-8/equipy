@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     @user = current_user
 
     # Get all the user's equipment
-    @my_equipment = Equipment.where(user: @user)
+    @user_equipment = Equipment.where(user: @user)
 
     # Bookings people made on current user's equipment
     ## For each equipment, get the pending booking(s) associated
