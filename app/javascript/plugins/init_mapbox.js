@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 
-// const mapElement = document.getElementById('map');
+const mapElement = document.getElementById('map');
 
 const buildMap = () => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -27,13 +27,10 @@ const fitMapToMarkers = (map, markers) => {
 };
 
 const initMapbox = () => {
-  const mapElement = document.getElementById('map');
-  if (mapElement) {
-    const map = buildMap();
-    const markers = JSON.parse(mapElement.dataset.markers);
-    addMarkersToMap(map, markers);
-    fitMapToMarkers(map, markers);
-  }
+  const map = buildMap();
+  const markers = JSON.parse(mapElement.dataset.markers);
+  addMarkersToMap(map, markers);
+  fitMapToMarkers(map, markers);
 };
 
 export { initMapbox };
