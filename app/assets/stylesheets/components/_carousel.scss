@@ -6,11 +6,8 @@ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.
 }
 
 
-
 .carousel-item {
-  background-color: #333333;
-}
-
-.carousel-item{
+  background-color: $brandnickel;
   text-align: center;
 }
+
