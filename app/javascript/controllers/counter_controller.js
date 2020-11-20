@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = [ 'count' ];
 
   connect() {
-    setInterval(this.refresh, 5000);
+    setInterval(this.refresh, 1000);
   }
   
   refresh = () => {
