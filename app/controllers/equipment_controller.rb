@@ -53,7 +53,7 @@ class EquipmentController < ApplicationController
 
   def destroy
     @equipment.destroy
-    redirect_to equipment_index_path
+    redirect_to profile_path
   end
 
   private
