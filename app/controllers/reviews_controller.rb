@@ -18,15 +18,26 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.equipment = @equipment
-    @review.user_id = current_user.id
-    
     authorize @review
-    
-    if @review.save
-      redirect_to equipment_path(@equipment)
-    else
+    if current_user.nil?
       @booking = Booking.new
+      flash.now[:alert] = "You must be signed in to leave a review"
       render "/equipment/show"
+    else
+      @review.user_id = current_user.id
+
+      if @equipment.user_id == @review.user_id
+        @booking = Booking.new
+        flash.now[:alert] = "You cannont review your own equipment"
+        render "/equipment/show"
+      else  
+        if @review.save
+          redirect_to equipment_path(@equipment)
+        else
+          @booking = Booking.new
+          render "/equipment/show"
+        end
+      end
     end
   end
 

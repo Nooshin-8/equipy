@@ -1,3 +1,11 @@
+.alert {
+  color: red;
+  font-weight: bold;
+  font-size: larger;
+  text-align: center;
+  margin-left: 80%;
+}
+
 .equip-price{
   background: $brandorange;
   color:white;
@@ -8,3 +16,4 @@
 .equip-price span{
   font-size:0.5em;
 }
+
