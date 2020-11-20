@@ -43,10 +43,14 @@
   padding:8px;
   text-align: center;
   font-weight:600;
-  background:#066BE7;
+  background:$brandorange;
   color:white;
 }
 
 .card-body .card-price span{
   font-weight:400;
+}
+
+.card-body a{
+  text-decoration: none;
 }
