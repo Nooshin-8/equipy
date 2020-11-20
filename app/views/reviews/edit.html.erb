@@ -4,7 +4,7 @@
     <%= simple_form_for [@equipment, @review] do |f| %>
       <%= f.input :title %>
       <%= f.input :description %>
-      <%= f.input :rating %>
+      <%= f.input :rating, hint: "Rating must be between 1 and 5", error: "Rating must be between 1 and 5" %>
       <%= f.button :submit, class: "btn btn-primary btn-lg w-100" %>
     <% end %>
     </div>
