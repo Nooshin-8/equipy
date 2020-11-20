@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
   def show
+
     # Bookings the current user made
     @my_bookings = Booking.where(user: current_user)
 
@@ -41,6 +42,6 @@ class ProfilesController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :profile_picture)
+    params.require(:user).permit(:email, :profile_picture, :username)
   end
 end
