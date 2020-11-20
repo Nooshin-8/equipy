@@ -20,9 +20,9 @@
       </div>
     </div>
     <div class="col col-12 col-md-auto">
-      <div class="statistics__container">
-        <span class="statistics__icon"><i class="fas fa-bell"></i></span>
-      	<p class="statistics__text"><%= @user_pending_bookings_count %></p>
+      <div class="statistics__container--warning" data-controller="counter">
+        <span class="statistics__icon--warning"><i class="fas fa-bell"></i></span>
+      	<p class="statistics__text" data-target="counter.count"><%= @user_pending_bookings_count %></p>
         <p class="statistics__label">Pending requests</p>
       </div>
     </div>
