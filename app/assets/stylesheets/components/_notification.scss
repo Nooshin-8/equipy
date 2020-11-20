@@ -1,0 +1,13 @@
+.notification {
+  &__bubble {
+    position: absolute;
+    background-color: $primary;
+    right: 20px;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    color: $white;
+    border-radius: 100%;
+    text-align: center;
+  }
+}
